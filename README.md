@@ -240,8 +240,8 @@ Testing
 Run automated tests using:
 
 php artisan test
-php artisan test --testsuite=Feature
-php artisan test --coverage
+php artisan test testsuite=Feature
+php artisan test coverage
 
 Technology Stack
 
