@@ -1,215 +1,258 @@
-# 🚗 MAM Tours - Car Rental Made Simple
+MAM Tours  Car Rental Made Simple
 
-Hey there! Welcome to MAM Tours, a car rental platform built to make booking vehicles as smooth as possible. Whether you're renting out cars or managing bookings, we've got you covered.
+MAM Tours is a modern car rental platform designed to simplify vehicle booking and rental management. It provides a seamless experience for customers booking cars and administrators managing operations.
 
-## What's Inside?
+The system is built to be secure, scalable, and practical for real-world rental businesses.
 
-This isn't just another booking system. Here's what makes it tick:
+Overview
 
-- **Easy Sign-Up & Login**: Get customers registered and verified with ID upload (just like Jumia does it)
-- **Smart Booking**: Real-time availability, instant pricing, and a booking flow that actually works
-- **Flexible Payments**: Accept cards via Stripe, MTN Mobile Money, Airtel Money, bank transfers, or good old cash
-- **Admin Control**: Manage everything from one dashboard - bookings, cars, customers, verifications, reviews
-- **Stay Connected**: Automatic email and SMS notifications keep everyone in the loop
-- **Customer Reviews**: Let your customers share their experience
-- **Professional Invoices**: Generate clean PDF invoices automatically
+MAM Tours is more than a booking system. It is a complete rental management solution built with efficiency and usability in mind.
 
-## What You'll Need
+Secure Registration and Verification
 
-Before diving in, make sure you have:
-- PHP 7.3+ (the engine that runs everything)
-- MySQL 5.7+ (where all your data lives)
-- Composer (PHP's package manager)
-- Node.js & NPM (for the frontend stuff)
+Customers can register, upload identification documents, and undergo verification before accessing full platform features. This ensures compliance and reduces risk.
 
-## Getting Started Locally
+Smart Booking System
 
-Want to run this on your machine? Here's how:
+Real-time vehicle availability
 
-**Step 1: Install Everything**
-```bash
-composer install    # Gets all PHP packages
-npm install        # Gets all JavaScript packages
-npm run build      # Builds the frontend
-```
+Automatic price calculation
 
-**Step 2: Set Up Your Environment**
-```bash
-cp .env.example .env           # Create your config file
-php artisan key:generate       # Generate security key
-```
+Streamlined booking workflow
 
-Now open `.env` and add your database details:
-```env
+Flexible Payment Options
+
+The platform supports:
+
+Stripe (card payments)
+
+MTN Mobile Money
+
+Airtel Money
+
+Bank transfers
+
+Cash payments
+
+Administrative Dashboard
+
+Administrators can manage:
+
+Vehicles
+
+Bookings
+
+Customers
+
+Identity verifications
+
+Reviews
+
+Payments
+
+Automated Notifications
+
+The system sends:
+
+Booking confirmations
+
+Payment confirmations
+
+Pickup reminders
+
+Email and SMS notifications
+
+Customer Reviews
+
+Customers can leave feedback to help maintain service quality and transparency.
+
+Automated Invoice Generation
+
+Professional PDF invoices are generated automatically for completed bookings.
+
+System Requirements
+
+Before running the application locally, ensure you have:
+
+PHP 7.3 or higher
+
+MySQL 5.7 or higher
+
+Composer
+
+Node.js and NPM
+
+Running Locally
+Step 1: Install Dependencies
+composer install
+npm install
+npm run build
+
+Step 2: Configure Environment
+cp .env.example .env
+php artisan key:generate
+
+
+Update the .env file with your database credentials:
+
 DB_DATABASE=mam_tours
 DB_USERNAME=root
 DB_PASSWORD=your_password
-```
 
-**Step 3: Set Up the Database**
-```bash
-php artisan migrate    # Creates all the tables
-php artisan db:seed    # Adds sample data (optional but helpful)
-```
+Step 3: Set Up the Database
+php artisan migrate
+php artisan db:seed
 
-**Step 4: Fire It Up**
-```bash
+Step 4: Start the Development Server
 php artisan serve
-```
 
-Open your browser and go to http://127.0.0.1:8000 - you're live!
 
-## Ready to Go Live?
+Access the application at:
 
-Deploying to Railway is pretty straightforward. Here's the quick version:
+http://127.0.0.1:8000
 
-**1. Push Your Code to GitHub**
-```bash
+Production Deployment (Railway)
+1. Push Code to GitHub
 git add .
-git commit -m "Ready for production"
+git commit -m "Production ready"
 git push origin main
-```
 
-**2. Set Up on Railway**
-- Head to https://railway.app and sign in with GitHub
-- Click "New Project" → "Deploy from GitHub repo"
-- Pick this repository
-- Add a MySQL database: "New" → "Database" → "MySQL"
+2. Deploy on Railway
 
-**3. Add Your Settings**
+Sign in to railway.app
 
-In the Railway dashboard, go to Variables and add:
-```env
+Create a new project
+
+Deploy from GitHub repository
+
+Add a MySQL database
+
+3. Configure Environment Variables
+
+Add the following variables in Railway:
+
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=${{RAILWAY_PUBLIC_DOMAIN}}
 
-# Database (Railway fills these automatically)
 DB_HOST=${{MYSQL_HOST}}
 DB_DATABASE=${{MYSQL_DATABASE}}
 DB_USERNAME=${{MYSQL_USER}}
 DB_PASSWORD=${{MYSQL_PASSWORD}}
 
-# Your payment keys
-STRIPE_KEY=your_actual_stripe_key
-STRIPE_SECRET=your_actual_stripe_secret
-```
+STRIPE_KEY=your_key
+STRIPE_SECRET=your_secret
 
-**4. Get Your URL**
-- Go to Settings → Networking → Generate Domain
-- Boom! You're live at something like `https://mam-tours.railway.app`
+4. Generate a Public Domain
 
-Need more details? Check out `RAILWAY_DEPLOYMENT.md` for the full walkthrough.
+Navigate to:
+Settings → Networking → Generate Domain
 
-## Setting Things Up
+Your application will then be publicly accessible.
 
-**Payments**
+Payment Configuration
 
-You'll want to get your payment providers sorted:
-- **Stripe**: Grab your API keys from https://stripe.com (handles card payments)
-- **Mobile Money**: Set up MTN and Airtel Money credentials
-- Pop everything into your `.env` file
+To activate payment functionality:
 
-**Emails & SMS**
+Stripe
 
-To keep customers updated:
-- **Email**: Use Mailgun, SendGrid, or any SMTP service
-- **SMS**: Sign up for Twilio or Africa's Talking
-- Add the credentials to `.env`
+Obtain API keys from stripe.com and add them to the .env file.
 
-**Automated Reminders**
+Mobile Money
 
-Want to send automatic payment and pickup reminders? Add this to your server's crontab:
-```bash
-* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
-```
+Register for MTN and Airtel Money credentials and configure them within the environment file.
 
-This runs every minute and checks if any notifications need to go out.
+Email and SMS Configuration
 
-## How It's Organized
+Supported services include:
 
-Here's where everything lives:
+Mailgun
 
-```
+SendGrid
+
+SMTP providers
+
+Twilio
+
+Africa’s Talking
+
+Add your provider credentials to the .env file to enable notifications.
+
+Scheduled Tasks
+
+To enable automated reminders and background tasks, add the following to your server’s crontab:
+
+* * * * * cd /your-project-path && php artisan schedule:run >> /dev/null 2>&1
+
+Project Structure
 app/
-├── Console/Commands/      # Automated tasks (reminders, backups)
-├── Http/Controllers/      # Handles all the requests
-├── Models/                # Your data structures
-└── Services/              # Payment processing, notifications, etc.
+├── Console/
+├── Http/Controllers/
+├── Models/
+└── Services/
 
 database/
-├── migrations/            # Database structure
-└── seeders/               # Sample data for testing
+├── migrations/
+└── seeders/
 
 resources/
-├── css/                   # Styles
-├── js/                    # JavaScript & Vue components
-└── views/                 # All the pages (Blade templates)
+├── css/
+├── js/
+└── views/
 
-public/                    # Images, compiled assets
-routes/web.php            # Where URLs map to controllers
-tests/                    # Automated tests
-```
+public/
+routes/web.php
+tests/
 
-## Important Pages
 
-- `/` - Home page with featured cars
-- `/register` - Sign up new customers
-- `/login` - Customer login
-- `/bookings` - Book a car
-- `/profile` - Upload ID/passport, manage account
-- `/dashboard` - Customer's booking history
-- `/admin` - Admin control panel
-- `/admin/kyc` - Verify customer IDs
-- `/payments/{booking}` - Complete payment
+The structure follows Laravel best practices for scalability and maintainability.
 
-## Testing
+Default Administrator Account
 
-Want to make sure everything works? Run the tests:
+After running the database seeder:
 
-```bash
-php artisan test                        # Run everything
-php artisan test --testsuite=Feature    # Just the feature tests
-php artisan test --coverage             # See what's covered
-```
+Email: wilberofficial2001@gmail.com
 
-## First Time Setup
+Password: password
 
-After running the seeder, you'll have a default admin account:
-- Email: wilberofficial2001@gmail.com
-- Password: password
+This password must be changed immediately in production.
 
-**Important**: Change this password immediately in production!
+Security Features
 
-## Security
+The application includes:
 
-We take security seriously. The app includes:
-- CSRF protection on all forms
-- XSS and SQL injection prevention
-- Rate limiting to prevent abuse
-- Secure password hashing (bcrypt)
-- Activity logging for admin actions
-- Ready for two-factor authentication
+CSRF protection
 
-Plus, unverified users can only pay with cash until they upload their ID - just like Jumia does it.
+XSS and SQL injection prevention
 
-## Need Help?
+Secure bcrypt password hashing
 
-Running into issues? Here's what to check:
+Rate limiting
 
-1. **Deployment problems?** → See `RAILWAY_DEPLOYMENT.md`
-2. **App errors?** → Check `storage/logs/laravel.log`
-3. **Production issues?** → View logs in your Railway dashboard
+Administrative activity logging
 
-## Built With
+Optional two-factor authentication support
 
-This project runs on some solid tech:
-- **Laravel 8** - The PHP framework that powers everything
-- **Vue.js 3** - For interactive frontend components
-- **Tailwind CSS** - Clean, modern styling
-- **Stripe API** - Card payment processing
-- **MySQL** - Reliable data storage
+Unverified users are restricted to cash payments until identification is approved.
 
----
+Testing
 
-Made with ☕ for MAM Tours
+Run automated tests using:
+
+php artisan test
+php artisan test --testsuite=Feature
+php artisan test --coverage
+
+Technology Stack
+
+Laravel 8
+
+Vue.js 3
+
+Tailwind CSS
+
+Stripe API
+
+MySQL
+
+MAM Tours is designed to provide a reliable, secure, and scalable car rental solution for modern businesses.
